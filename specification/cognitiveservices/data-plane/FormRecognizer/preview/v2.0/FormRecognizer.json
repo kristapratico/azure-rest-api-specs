@@ -632,10 +632,6 @@
         }
       }
     },
-    "SourceDataStream": {
-      "description": "A PDF document, image (jpg/png/tiff), or JSON file to analyze.",
-      "type": "object"
-    },
     "ModelInfo": {
       "description": "Basic custom model information.",
       "type": "object",
@@ -1377,7 +1373,7 @@
       "x-ms-parameter-location": "method",
       "in": "body",
       "schema": {
-        "$ref": "#/definitions/SourceDataStream"
+        "$ref": "#/definitions/SourcePath"
       }
     }
   }
