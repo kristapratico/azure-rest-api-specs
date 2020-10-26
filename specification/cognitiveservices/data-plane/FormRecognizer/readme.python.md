@@ -25,6 +25,7 @@ batch:
 output-folder: $(python-sdks-folder)/formrecognizer/azure-ai-formrecognizer/azure/ai/formrecognizer/
 clear-output-folder: false
 perform-load: false
+default-api: 2.1-preview.2
 ```
 
 ``` yaml $(tag) == 'release_2_0'
