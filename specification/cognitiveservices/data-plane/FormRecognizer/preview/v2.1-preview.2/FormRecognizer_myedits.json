@@ -1621,6 +1621,10 @@
           "items": {
             "$ref": "#/definitions/TextWord"
           }
+        },
+        "appearance": {
+          "description": "Text appearance properties.",
+          "$ref": "#/definitions/Appearance"
         }
       }
     },
@@ -1644,10 +1648,6 @@
           "description": "Confidence value.",
           "$ref": "#/definitions/Confidence"
         },
-        "appearance": {
-          "description": "Text appearance properties.",
-          "$ref": "#/definitions/Appearance"
-        }
       }
     },
     "BoundingBox": {
