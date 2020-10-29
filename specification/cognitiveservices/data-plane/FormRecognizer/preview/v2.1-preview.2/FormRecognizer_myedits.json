@@ -1647,7 +1647,7 @@
         "confidence": {
           "description": "Confidence value.",
           "$ref": "#/definitions/Confidence"
-        },
+        }
       }
     },
     "BoundingBox": {
