@@ -1,0 +1,263 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "BodyPolymorphic",
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "schemes": [
+        "http"
+    ],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/polymorphic/form": {
+            "get": {
+                "operationId": "getAnalyzedForm",
+                "responses": {
+                    "200": {
+                        "description": "Successfully identied the type and contents of the document",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyzedForm"
+                        }
+                    }
+                }
+            }
+        },
+        "/polymorphic/passport": {
+            "get": {
+                "operationId": "getAnalyzedPassport",
+                "responses": {
+                    "200": {
+                        "description": "Successfully identied the type and contents of the document",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyzedForm"
+                        }
+                    }
+                }
+            }
+        },
+        "/polymorphic/businessCard": {
+            "get": {
+                "operationId": "getAnalyzedBusinessCard",
+                "responses": {
+                    "200": {
+                        "description": "Successfully identied the type and contents of the document",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyzedForm"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AnalyzedForm": {
+            "description": "Base model for arbitrary forms. Has an untyped set of fields that can be discovered",
+            "type": "object",
+            "required": [
+                "docType",
+                "fields"
+            ],
+            "x-ms-discriminator-value": "docType",
+            "properties": {
+                "docType": {
+                    "type": "string"
+                }
+            }
+        },
+        "FormFields": {
+            "description": "Base model for collectoin of form fields. Has no known field names",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/FormField"
+            }
+        },
+        "FormField": {
+            "type": "object",
+            "required": [
+                "valueType"
+            ],
+            "properties": {
+                "valueType": {
+                  "enum": [
+                      "string",
+                      "date",
+                      "time",
+                      "phoneNumber",
+                      "float",
+                      "integer",
+                      "list",
+                      "dictionary",
+                      "selectionMark"
+                  ],
+                  "type": "string",
+                  "x-ms-enum": {
+                    "name": "value",
+                    "modelAsString": true
+                  }
+                },
+                "value": {},
+                "precision": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+          "discriminator": "valueType"
+        },
+        "StringFormField": {
+            "x-ms-discriminator-value": "string",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormField"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "NumberFormField": {
+            "x-ms-discriminator-value": "number",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormField"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "DateFormField": {
+            "x-ms-discriminator-value": "date",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormField"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "ListFormField": {
+            "x-ms-discriminator-value": "list",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormField"
+                }
+            ],
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/FormField"
+                  }
+                }
+              }
+        },
+        "DictionaryFormField": {
+            "x-ms-discriminator-value": "dictionary",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormField"
+                }
+            ],
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/definitions/DictionaryFormField"
+                  }
+                }
+              }
+        },
+        "AnalyzedPassport": {
+            "x-ms-discriminator-value": "passport",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AnalyzedForm"
+                }
+            ],
+            "required": [
+                "fields"
+            ],
+            "properties": {
+                "fields": {
+                    "$ref": "#/definitions/AnalyzedPassportFormFields"
+                }
+            }
+        },
+        "AnalyzedPassportFormFields": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/FormFields"
+                }
+            ],
+            "properties": {
+                "issuingCountry": {
+                    "$ref": "#/definitions/StringFormField"
+                },
+                "firstName": {
+                    "$ref":  "#/definitions/StringFormField"
+                },
+                "passportNumber": {
+                    "$ref": "#/definitions/NumberFormField"
+                },
+                "expirationDate": {
+                    "$ref": "#/definitions/DateFormField"
+                },
+                "contactNames": {
+                    "$ref": "#/definitions/ListFormField",
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/DictionaryFormField"
+                          }
+                        }
+                      }
+
+                }
+            }
+        },
+        "AnalyzedBusinessCard": {
+            "x-ms-discriminator-value": "form:businesscard",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AnalyzedForm"
+                }
+            ],
+            "required": [
+                "fields"
+            ],
+            "properties": {
+                "fields": {
+                    "$ref": "#/definitions/AnalyzedBusinessCardFields"
+                }
+            }
+        },
+        "AnalyzedBusinessCardFields": {
+            "properties": {
+                "companyName": {
+                    "$ref": "#/definitions/StringFormField"
+                },
+                "phoneNumber": {
+                    "$ref": "#/definitions/StringFormField"
+                }
+            }
+        }
+    }
+}
