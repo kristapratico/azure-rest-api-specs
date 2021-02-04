@@ -164,6 +164,8 @@ class FormField(msrest.serialization.Model):
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
     :type value_type: str or ~body_polymorphic.models.Value
+    :param value: Any object.
+    :type value: object
     :param precision:
     :type precision: float
     """
@@ -175,6 +177,7 @@ class FormField(msrest.serialization.Model):
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
+        'value': {'key': 'value', 'type': 'object'},
         'precision': {'key': 'precision', 'type': 'float'},
     }
 
@@ -188,6 +191,7 @@ class FormField(msrest.serialization.Model):
     ):
         super(FormField, self).__init__(**kwargs)
         self.value_type = None  # type: Optional[str]
+        self.value = kwargs.get('value', None)
         self.precision = kwargs.get('precision', None)
 
 
@@ -235,8 +239,8 @@ class DictionaryFormField(FormField):
     :type value_type: str or ~body_polymorphic.models.Value
     :param precision:
     :type precision: float
-    :param value: Dictionary of :code:`<DictionaryFormField>`.
-    :type value: dict[str, ~body_polymorphic.models.DictionaryFormField]
+    :param value: Dictionary of :code:`<FormField>`.
+    :type value: dict[str, ~body_polymorphic.models.FormField]
     """
 
     _validation = {
@@ -247,7 +251,7 @@ class DictionaryFormField(FormField):
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
         'precision': {'key': 'precision', 'type': 'float'},
-        'value': {'key': 'value', 'type': '{DictionaryFormField}'},
+        'value': {'key': 'value', 'type': '{FormField}'},
     }
 
     def __init__(

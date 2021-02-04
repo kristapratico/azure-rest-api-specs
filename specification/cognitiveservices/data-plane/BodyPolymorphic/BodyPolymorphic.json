@@ -178,7 +178,7 @@
               "value": {
                 "type": "object",
                 "additionalProperties": {
-                    "$ref": "#/definitions/DictionaryFormField"
+                    "$ref": "#/definitions/FormField"
                   }
                 }
               }
@@ -219,17 +219,7 @@
                     "$ref": "#/definitions/DateFormField"
                 },
                 "contactNames": {
-                    "$ref": "#/definitions/ListFormField",
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/DictionaryFormField"
-                          }
-                        }
-                      }
-
+                    "$ref": "#/definitions/ListFormField"
                 }
             }
         },
