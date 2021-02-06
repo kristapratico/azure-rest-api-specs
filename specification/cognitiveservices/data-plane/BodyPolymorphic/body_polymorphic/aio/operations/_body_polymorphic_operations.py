@@ -17,18 +17,18 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class BodyPolymorphicOperationsMixin:
 
-    async def get_analyzed_form(
+    async def get_recognized_form(
         self,
         **kwargs
-    ) -> "_models.AnalyzedForm":
-        """get_analyzed_form.
+    ) -> "_models.RecognizedForm":
+        """get_recognized_form.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AnalyzedForm, or the result of cls(response)
-        :rtype: ~body_polymorphic.models.AnalyzedForm
+        :return: RecognizedForm, or the result of cls(response)
+        :rtype: ~body_polymorphic.models.RecognizedForm
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.AnalyzedForm"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RecognizedForm"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -36,7 +36,7 @@ class BodyPolymorphicOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_analyzed_form.metadata['url']  # type: ignore
+        url = self.get_recognized_form.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -53,26 +53,26 @@ class BodyPolymorphicOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('AnalyzedForm', pipeline_response)
+        deserialized = self._deserialize('RecognizedForm', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_analyzed_form.metadata = {'url': '/polymorphic/form'}  # type: ignore
+    get_recognized_form.metadata = {'url': '/polymorphic/form'}  # type: ignore
 
-    async def get_analyzed_passport(
+    async def get_recognized_invoice(
         self,
         **kwargs
-    ) -> "_models.AnalyzedForm":
-        """get_analyzed_passport.
+    ) -> "_models.RecognizedForm":
+        """get_recognized_invoice.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AnalyzedForm, or the result of cls(response)
-        :rtype: ~body_polymorphic.models.AnalyzedForm
+        :return: RecognizedForm, or the result of cls(response)
+        :rtype: ~body_polymorphic.models.RecognizedForm
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.AnalyzedForm"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RecognizedForm"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -80,7 +80,7 @@ class BodyPolymorphicOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_analyzed_passport.metadata['url']  # type: ignore
+        url = self.get_recognized_invoice.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -97,26 +97,26 @@ class BodyPolymorphicOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('AnalyzedForm', pipeline_response)
+        deserialized = self._deserialize('RecognizedForm', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_analyzed_passport.metadata = {'url': '/polymorphic/passport'}  # type: ignore
+    get_recognized_invoice.metadata = {'url': '/polymorphic/invoice'}  # type: ignore
 
-    async def get_analyzed_business_card(
+    async def get_recognized_business_card(
         self,
         **kwargs
-    ) -> "_models.AnalyzedForm":
-        """get_analyzed_business_card.
+    ) -> "_models.RecognizedForm":
+        """get_recognized_business_card.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AnalyzedForm, or the result of cls(response)
-        :rtype: ~body_polymorphic.models.AnalyzedForm
+        :return: RecognizedForm, or the result of cls(response)
+        :rtype: ~body_polymorphic.models.RecognizedForm
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.AnalyzedForm"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RecognizedForm"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -124,7 +124,7 @@ class BodyPolymorphicOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_analyzed_business_card.metadata['url']  # type: ignore
+        url = self.get_recognized_business_card.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -141,10 +141,54 @@ class BodyPolymorphicOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('AnalyzedForm', pipeline_response)
+        deserialized = self._deserialize('RecognizedForm', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_analyzed_business_card.metadata = {'url': '/polymorphic/businessCard'}  # type: ignore
+    get_recognized_business_card.metadata = {'url': '/polymorphic/businessCard'}  # type: ignore
+
+    async def get_recognized_receipt(
+        self,
+        **kwargs
+    ) -> "_models.RecognizedForm":
+        """get_recognized_receipt.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: RecognizedForm, or the result of cls(response)
+        :rtype: ~body_polymorphic.models.RecognizedForm
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RecognizedForm"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_recognized_receipt.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('RecognizedForm', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_recognized_receipt.metadata = {'url': '/polymorphic/receipt'}  # type: ignore

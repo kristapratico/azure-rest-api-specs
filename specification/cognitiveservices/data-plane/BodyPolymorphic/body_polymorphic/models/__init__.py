@@ -5,45 +5,105 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import AnalyzedBusinessCard
-    from ._models_py3 import AnalyzedBusinessCardFields
-    from ._models_py3 import AnalyzedForm
-    from ._models_py3 import AnalyzedPassport
-    from ._models_py3 import AnalyzedPassportFormFields
+    from ._models_py3 import AddressesFormField
+    from ._models_py3 import CompanyNamesFormField
+    from ._models_py3 import ContactNameFormField
+    from ._models_py3 import ContactNamesFormField
     from ._models_py3 import DateFormField
+    from ._models_py3 import DepartmentsFormField
     from ._models_py3 import DictionaryFormField
+    from ._models_py3 import EmailsFormField
+    from ._models_py3 import FaxesFormField
+    from ._models_py3 import FloatFormField
     from ._models_py3 import FormField
+    from ._models_py3 import IntegerFormField
+    from ._models_py3 import JobTitlesFormField
     from ._models_py3 import ListFormField
-    from ._models_py3 import NumberFormField
+    from ._models_py3 import MobilePhonesFormField
+    from ._models_py3 import OtherPhonesFormField
+    from ._models_py3 import PhoneNumberFormField
+    from ._models_py3 import ReceiptItemFormField
+    from ._models_py3 import ReceiptItemsFormField
+    from ._models_py3 import RecognizedBusinessCard
+    from ._models_py3 import RecognizedBusinessCardFields
+    from ._models_py3 import RecognizedForm
+    from ._models_py3 import RecognizedInvoice
+    from ._models_py3 import RecognizedInvoiceFormFields
+    from ._models_py3 import RecognizedReceipt
+    from ._models_py3 import RecognizedReceiptFields
+    from ._models_py3 import SelectionMarkFormField
     from ._models_py3 import StringFormField
+    from ._models_py3 import TimeFormField
+    from ._models_py3 import WebsitesFormField
+    from ._models_py3 import WorkPhonesFormField
 except (SyntaxError, ImportError):
-    from ._models import AnalyzedBusinessCard  # type: ignore
-    from ._models import AnalyzedBusinessCardFields  # type: ignore
-    from ._models import AnalyzedForm  # type: ignore
-    from ._models import AnalyzedPassport  # type: ignore
-    from ._models import AnalyzedPassportFormFields  # type: ignore
+    from ._models import AddressesFormField  # type: ignore
+    from ._models import CompanyNamesFormField  # type: ignore
+    from ._models import ContactNameFormField  # type: ignore
+    from ._models import ContactNamesFormField  # type: ignore
     from ._models import DateFormField  # type: ignore
+    from ._models import DepartmentsFormField  # type: ignore
     from ._models import DictionaryFormField  # type: ignore
+    from ._models import EmailsFormField  # type: ignore
+    from ._models import FaxesFormField  # type: ignore
+    from ._models import FloatFormField  # type: ignore
     from ._models import FormField  # type: ignore
+    from ._models import IntegerFormField  # type: ignore
+    from ._models import JobTitlesFormField  # type: ignore
     from ._models import ListFormField  # type: ignore
-    from ._models import NumberFormField  # type: ignore
+    from ._models import MobilePhonesFormField  # type: ignore
+    from ._models import OtherPhonesFormField  # type: ignore
+    from ._models import PhoneNumberFormField  # type: ignore
+    from ._models import ReceiptItemFormField  # type: ignore
+    from ._models import ReceiptItemsFormField  # type: ignore
+    from ._models import RecognizedBusinessCard  # type: ignore
+    from ._models import RecognizedBusinessCardFields  # type: ignore
+    from ._models import RecognizedForm  # type: ignore
+    from ._models import RecognizedInvoice  # type: ignore
+    from ._models import RecognizedInvoiceFormFields  # type: ignore
+    from ._models import RecognizedReceipt  # type: ignore
+    from ._models import RecognizedReceiptFields  # type: ignore
+    from ._models import SelectionMarkFormField  # type: ignore
     from ._models import StringFormField  # type: ignore
+    from ._models import TimeFormField  # type: ignore
+    from ._models import WebsitesFormField  # type: ignore
+    from ._models import WorkPhonesFormField  # type: ignore
 
 from ._body_polymorphic_enums import (
     Value,
 )
 
 __all__ = [
-    'AnalyzedBusinessCard',
-    'AnalyzedBusinessCardFields',
-    'AnalyzedForm',
-    'AnalyzedPassport',
-    'AnalyzedPassportFormFields',
+    'AddressesFormField',
+    'CompanyNamesFormField',
+    'ContactNameFormField',
+    'ContactNamesFormField',
     'DateFormField',
+    'DepartmentsFormField',
     'DictionaryFormField',
+    'EmailsFormField',
+    'FaxesFormField',
+    'FloatFormField',
     'FormField',
+    'IntegerFormField',
+    'JobTitlesFormField',
     'ListFormField',
-    'NumberFormField',
+    'MobilePhonesFormField',
+    'OtherPhonesFormField',
+    'PhoneNumberFormField',
+    'ReceiptItemFormField',
+    'ReceiptItemsFormField',
+    'RecognizedBusinessCard',
+    'RecognizedBusinessCardFields',
+    'RecognizedForm',
+    'RecognizedInvoice',
+    'RecognizedInvoiceFormFields',
+    'RecognizedReceipt',
+    'RecognizedReceiptFields',
+    'SelectionMarkFormField',
     'StringFormField',
+    'TimeFormField',
+    'WebsitesFormField',
+    'WorkPhonesFormField',
     'Value',
 ]
