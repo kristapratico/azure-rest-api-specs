@@ -106,16 +106,15 @@
             ],
             "type": "string",
             "x-ms-enum": {
-              "name": "value",
+              "name": "valueType",
               "modelAsString": true
             }
           },
           "value": {},
-          "precision": {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
-          }
+          "label_data": {},
+          "value_data": {},
+          "name": {},
+          "confidence": {}
         },
         "discriminator": "valueType"
       },
@@ -254,6 +253,7 @@
         }
       },
       "ContactNameFormField": {
+        "x-ms-discriminator-value": "dictionary",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -270,6 +270,7 @@
         }
       },
       "ContactNamesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -286,9 +287,10 @@
         }
       },
       "CompanyNamesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
-            "$ref": "#/definitions/ListFormField"
+            "$ref": "#/definitions/FormField"
           }
         ],
         "type": "object",
@@ -302,9 +304,10 @@
         }
       },
       "ReceiptItemsFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
-            "$ref": "#/definitions/ListFormField"
+            "$ref": "#/definitions/FormField"
           }
         ],
         "type": "object",
@@ -318,6 +321,7 @@
         }
       },
       "ReceiptItemFormField": {
+        "x-ms-discriminator-value": "dictionary",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -340,6 +344,7 @@
         }
       },
       "DepartmentsFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -356,6 +361,7 @@
         }
       },
       "JobTitlesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -372,6 +378,7 @@
         }
       },
       "EmailsFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -388,6 +395,7 @@
         }
       },
       "WebsitesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -404,6 +412,7 @@
         }
       },
       "AddressesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -420,6 +429,7 @@
         }
       },
       "MobilePhonesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -436,6 +446,7 @@
         }
       },
       "FaxesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -452,6 +463,7 @@
         }
       },
       "WorkPhonesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"
@@ -468,6 +480,7 @@
         }
       },
       "OtherPhonesFormField": {
+        "x-ms-discriminator-value": "list",
         "allOf": [
           {
             "$ref": "#/definitions/FormField"

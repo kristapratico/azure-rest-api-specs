@@ -14,45 +14,59 @@ class FormField(msrest.serialization.Model):
     """FormField.
 
     You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: AddressesFormField, ContactNameFormField, ContactNamesFormField, DepartmentsFormField, EmailsFormField, FaxesFormField, JobTitlesFormField, MobilePhonesFormField, OtherPhonesFormField, ReceiptItemFormField, WebsitesFormField, WorkPhonesFormField, DateFormField, DictionaryFormField, FloatFormField, IntegerFormField, ListFormField, PhoneNumberFormField, SelectionMarkFormField, StringFormField, TimeFormField.
+    sub-classes are: DateFormField, ReceiptItemFormField, FloatFormField, IntegerFormField, OtherPhonesFormField, PhoneNumberFormField, SelectionMarkFormField, StringFormField, TimeFormField.
 
     All required parameters must be populated in order to send to Azure.
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
+    :type value_type: str or ~body_polymorphic.models.ValueType
     :param value: Any object.
     :type value: object
-    :param precision:
-    :type precision: float
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
         'value': {'key': 'value', 'type': 'object'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
     }
 
     _subtype_map = {
-        'value_type': {'AddressesFormField': 'AddressesFormField', 'ContactNameFormField': 'ContactNameFormField', 'ContactNamesFormField': 'ContactNamesFormField', 'DepartmentsFormField': 'DepartmentsFormField', 'EmailsFormField': 'EmailsFormField', 'FaxesFormField': 'FaxesFormField', 'JobTitlesFormField': 'JobTitlesFormField', 'MobilePhonesFormField': 'MobilePhonesFormField', 'OtherPhonesFormField': 'OtherPhonesFormField', 'ReceiptItemFormField': 'ReceiptItemFormField', 'WebsitesFormField': 'WebsitesFormField', 'WorkPhonesFormField': 'WorkPhonesFormField', 'date': 'DateFormField', 'dictionary': 'DictionaryFormField', 'float': 'FloatFormField', 'integer': 'IntegerFormField', 'list': 'ListFormField', 'phoneNumber': 'PhoneNumberFormField', 'selectionMark': 'SelectionMarkFormField', 'string': 'StringFormField', 'time': 'TimeFormField'}
+        'value_type': {'date': 'DateFormField', 'dictionary': 'ReceiptItemFormField', 'float': 'FloatFormField', 'integer': 'IntegerFormField', 'list': 'OtherPhonesFormField', 'phoneNumber': 'PhoneNumberFormField', 'selectionMark': 'SelectionMarkFormField', 'string': 'StringFormField', 'time': 'TimeFormField'}
     }
 
     def __init__(
         self,
         *,
         value: Optional[object] = None,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         **kwargs
     ):
         super(FormField, self).__init__(**kwargs)
         self.value_type = None  # type: Optional[str]
         self.value = value
-        self.precision = precision
+        self.label_data = label_data
+        self.value_data = value_data
+        self.name = name
+        self.confidence = confidence
 
 
 class AddressesFormField(FormField):
@@ -62,114 +76,92 @@ class AddressesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(AddressesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'AddressesFormField'  # type: str
-        self.value = value
-
-
-class ListFormField(FormField):
-    """ListFormField.
-
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: CompanyNamesFormField, ReceiptItemsFormField.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param value_type: Required. Constant filled by server.  Possible values include: "string",
-     "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
-    :param value:
-    :type value: list[~body_polymorphic.models.FormField]
-    """
-
-    _validation = {
-        'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
-    }
-
-    _attribute_map = {
-        'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
-        'value': {'key': 'value', 'type': '[FormField]'},
-    }
-
-    _subtype_map = {
-        'value_type': {'CompanyNamesFormField': 'CompanyNamesFormField', 'ReceiptItemsFormField': 'ReceiptItemsFormField'}
-    }
-
-    def __init__(
-        self,
-        *,
-        precision: Optional[float] = None,
-        value: Optional[List["FormField"]] = None,
-        **kwargs
-    ):
-        super(ListFormField, self).__init__(precision=precision, **kwargs)
+        super(AddressesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'list'  # type: str
         self.value = value
 
 
-class CompanyNamesFormField(ListFormField):
+class CompanyNamesFormField(FormField):
     """CompanyNamesFormField.
 
     All required parameters must be populated in order to send to Azure.
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(CompanyNamesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'CompanyNamesFormField'  # type: str
+        super(CompanyNamesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -180,11 +172,17 @@ class ContactNameFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
+    :type value_type: str or ~body_polymorphic.models.ValueType
     :param value: Any object.
     :type value: object
-    :param precision:
-    :type precision: float
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param first_name:
     :type first_name: ~body_polymorphic.models.StringFormField
     :param last_name:
@@ -193,13 +191,15 @@ class ContactNameFormField(FormField):
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
         'value': {'key': 'value', 'type': 'object'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'first_name': {'key': 'firstName', 'type': 'StringFormField'},
         'last_name': {'key': 'lastName', 'type': 'StringFormField'},
     }
@@ -208,13 +208,16 @@ class ContactNameFormField(FormField):
         self,
         *,
         value: Optional[object] = None,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         first_name: Optional["StringFormField"] = None,
         last_name: Optional["StringFormField"] = None,
         **kwargs
     ):
-        super(ContactNameFormField, self).__init__(value=value, precision=precision, **kwargs)
-        self.value_type = 'ContactNameFormField'  # type: str
+        super(ContactNameFormField, self).__init__(value=value, label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'dictionary'  # type: str
         self.first_name = first_name
         self.last_name = last_name
 
@@ -226,33 +229,44 @@ class ContactNamesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.ContactNameFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[ContactNameFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["ContactNameFormField"]] = None,
         **kwargs
     ):
-        super(ContactNamesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'ContactNamesFormField'  # type: str
+        super(ContactNamesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -263,32 +277,43 @@ class DateFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: ~datetime.date
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'date'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[datetime.date] = None,
         **kwargs
     ):
-        super(DateFormField, self).__init__(precision=precision, **kwargs)
+        super(DateFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'date'  # type: str
         self.value = value
 
@@ -300,33 +325,44 @@ class DepartmentsFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(DepartmentsFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'DepartmentsFormField'  # type: str
+        super(DepartmentsFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -337,32 +373,43 @@ class DictionaryFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value: Dictionary of :code:`<FormField>`.
     :type value: dict[str, ~body_polymorphic.models.FormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '{FormField}'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[Dict[str, "FormField"]] = None,
         **kwargs
     ):
-        super(DictionaryFormField, self).__init__(precision=precision, **kwargs)
+        super(DictionaryFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'dictionary'  # type: str
         self.value = value
 
@@ -374,33 +421,44 @@ class EmailsFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(EmailsFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'EmailsFormField'  # type: str
+        super(EmailsFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -411,33 +469,44 @@ class FaxesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(FaxesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'FaxesFormField'  # type: str
+        super(FaxesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -448,32 +517,43 @@ class FloatFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: float
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'float'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[float] = None,
         **kwargs
     ):
-        super(FloatFormField, self).__init__(precision=precision, **kwargs)
+        super(FloatFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'float'  # type: str
         self.value = value
 
@@ -485,32 +565,43 @@ class IntegerFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: int
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[int] = None,
         **kwargs
     ):
-        super(IntegerFormField, self).__init__(precision=precision, **kwargs)
+        super(IntegerFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'integer'  # type: str
         self.value = value
 
@@ -522,33 +613,92 @@ class JobTitlesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(JobTitlesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'JobTitlesFormField'  # type: str
+        super(JobTitlesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
+        self.value = value
+
+
+class ListFormField(FormField):
+    """ListFormField.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param value_type: Required. Constant filled by server.  Possible values include: "string",
+     "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
+    :param value:
+    :type value: list[~body_polymorphic.models.FormField]
+    """
+
+    _validation = {
+        'value_type': {'required': True},
+    }
+
+    _attribute_map = {
+        'value_type': {'key': 'valueType', 'type': 'str'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
+        'value': {'key': 'value', 'type': '[FormField]'},
+    }
+
+    def __init__(
+        self,
+        *,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
+        value: Optional[List["FormField"]] = None,
+        **kwargs
+    ):
+        super(ListFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -559,33 +709,44 @@ class MobilePhonesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(MobilePhonesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'MobilePhonesFormField'  # type: str
+        super(MobilePhonesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -596,33 +757,44 @@ class OtherPhonesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(OtherPhonesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'OtherPhonesFormField'  # type: str
+        super(OtherPhonesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -633,32 +805,43 @@ class PhoneNumberFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: str
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[str] = None,
         **kwargs
     ):
-        super(PhoneNumberFormField, self).__init__(precision=precision, **kwargs)
+        super(PhoneNumberFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'phoneNumber'  # type: str
         self.value = value
 
@@ -670,11 +853,15 @@ class ReceiptItemFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
+    :type value_type: str or ~body_polymorphic.models.ValueType
     :param value: Any object.
     :type value: object
-    :param precision:
-    :type precision: float
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param confidence: Any object.
+    :type confidence: object
     :param name:
     :type name: ~body_polymorphic.models.StringFormField
     :param quantity:
@@ -687,13 +874,14 @@ class ReceiptItemFormField(FormField):
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
         'value': {'key': 'value', 'type': 'object'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'name': {'key': 'name', 'type': 'StringFormField'},
         'quantity': {'key': 'quantity', 'type': 'FloatFormField'},
         'price': {'key': 'price', 'type': 'FloatFormField'},
@@ -704,55 +892,68 @@ class ReceiptItemFormField(FormField):
         self,
         *,
         value: Optional[object] = None,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        confidence: Optional[object] = None,
         name: Optional["StringFormField"] = None,
         quantity: Optional["FloatFormField"] = None,
         price: Optional["FloatFormField"] = None,
         total_price: Optional["FloatFormField"] = None,
         **kwargs
     ):
-        super(ReceiptItemFormField, self).__init__(value=value, precision=precision, **kwargs)
-        self.value_type = 'ReceiptItemFormField'  # type: str
+        super(ReceiptItemFormField, self).__init__(value=value, label_data=label_data, value_data=value_data, confidence=confidence, **kwargs)
+        self.value_type = 'dictionary'  # type: str
         self.name = name
         self.quantity = quantity
         self.price = price
         self.total_price = total_price
 
 
-class ReceiptItemsFormField(ListFormField):
+class ReceiptItemsFormField(FormField):
     """ReceiptItemsFormField.
 
     All required parameters must be populated in order to send to Azure.
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.ReceiptItemFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[ReceiptItemFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["ReceiptItemFormField"]] = None,
         **kwargs
     ):
-        super(ReceiptItemsFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'ReceiptItemsFormField'  # type: str
+        super(ReceiptItemsFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -1182,32 +1383,43 @@ class SelectionMarkFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: str
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[str] = None,
         **kwargs
     ):
-        super(SelectionMarkFormField, self).__init__(precision=precision, **kwargs)
+        super(SelectionMarkFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'selectionMark'  # type: str
         self.value = value
 
@@ -1219,32 +1431,43 @@ class StringFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: str
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[str] = None,
         **kwargs
     ):
-        super(StringFormField, self).__init__(precision=precision, **kwargs)
+        super(StringFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'string'  # type: str
         self.value = value
 
@@ -1256,32 +1479,43 @@ class TimeFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: ~datetime.time
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': 'time'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[datetime.time] = None,
         **kwargs
     ):
-        super(TimeFormField, self).__init__(precision=precision, **kwargs)
+        super(TimeFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
         self.value_type = 'time'  # type: str
         self.value = value
 
@@ -1293,33 +1527,44 @@ class WebsitesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(WebsitesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'WebsitesFormField'  # type: str
+        super(WebsitesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value
 
 
@@ -1330,31 +1575,42 @@ class WorkPhonesFormField(FormField):
 
     :param value_type: Required. Constant filled by server.  Possible values include: "string",
      "date", "time", "phoneNumber", "float", "integer", "list", "dictionary", "selectionMark".
-    :type value_type: str or ~body_polymorphic.models.Value
-    :param precision:
-    :type precision: float
+    :type value_type: str or ~body_polymorphic.models.ValueType
+    :param label_data: Any object.
+    :type label_data: object
+    :param value_data: Any object.
+    :type value_data: object
+    :param name: Any object.
+    :type name: object
+    :param confidence: Any object.
+    :type confidence: object
     :param value:
     :type value: list[~body_polymorphic.models.StringFormField]
     """
 
     _validation = {
         'value_type': {'required': True},
-        'precision': {'maximum': 1, 'minimum': 0},
     }
 
     _attribute_map = {
         'value_type': {'key': 'valueType', 'type': 'str'},
-        'precision': {'key': 'precision', 'type': 'float'},
+        'label_data': {'key': 'label_data', 'type': 'object'},
+        'value_data': {'key': 'value_data', 'type': 'object'},
+        'name': {'key': 'name', 'type': 'object'},
+        'confidence': {'key': 'confidence', 'type': 'object'},
         'value': {'key': 'value', 'type': '[StringFormField]'},
     }
 
     def __init__(
         self,
         *,
-        precision: Optional[float] = None,
+        label_data: Optional[object] = None,
+        value_data: Optional[object] = None,
+        name: Optional[object] = None,
+        confidence: Optional[object] = None,
         value: Optional[List["StringFormField"]] = None,
         **kwargs
     ):
-        super(WorkPhonesFormField, self).__init__(precision=precision, **kwargs)
-        self.value_type = 'WorkPhonesFormField'  # type: str
+        super(WorkPhonesFormField, self).__init__(label_data=label_data, value_data=value_data, name=name, confidence=confidence, **kwargs)
+        self.value_type = 'list'  # type: str
         self.value = value

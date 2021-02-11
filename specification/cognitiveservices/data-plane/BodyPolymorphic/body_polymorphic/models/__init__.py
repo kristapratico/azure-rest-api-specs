@@ -70,7 +70,7 @@ except (SyntaxError, ImportError):
     from ._models import WorkPhonesFormField  # type: ignore
 
 from ._body_polymorphic_enums import (
-    Value,
+    ValueType,
 )
 
 __all__ = [
@@ -105,5 +105,5 @@ __all__ = [
     'TimeFormField',
     'WebsitesFormField',
     'WorkPhonesFormField',
-    'Value',
+    'ValueType',
 ]

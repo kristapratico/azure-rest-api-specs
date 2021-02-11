@@ -24,7 +24,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class Value(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ValueType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     STRING = "string"
     DATE = "date"
