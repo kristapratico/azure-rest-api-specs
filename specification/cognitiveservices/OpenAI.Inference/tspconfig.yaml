@@ -3,8 +3,9 @@ parameters:
     default: "sdk/openai"
   "dependencies":
     default: ""
-emit:
- - "@azure-tools/typespec-autorest"
+emit: [
+  "@azure-tools/typespec-python",
+]
 options:
   "@azure-tools/typespec-autorest":
     emitter-output-dir: "{project-root}/../"
@@ -25,6 +26,10 @@ options:
     generate-tests: false
     custom-types-subpackage: "implementation.models"
     custom-types: "FunctionCallModelBase,FunctionCallPreset,FunctionCallPresetFunctionCallModel,FunctionNameFunctionCallModel"
+  "@azure-tools/typespec-python":
+    package-mode: "dataplane"
+    package-dir: "azure-openai"
+    package-name: "azure.openai"
   # "@azure-tools/typespec-ts":
   #   package-dir: "azure-ai-openai"
   #   emitter-output-dir: "{project-root}/generated"
