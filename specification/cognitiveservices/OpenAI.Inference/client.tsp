@@ -17,6 +17,3 @@ using Azure.ClientGenerator.Core;
 @@include(Azure.OpenAI.ImageGenerationOptions);
 @@include(Azure.OpenAI.ImageLocation);
 @@include(Azure.OpenAI.ImageGenerations);
-
-// Python-specific internal operations to flatten the input to keyword args
-@@internal(Azure.OpenAI.getEmbeddings, "python");
