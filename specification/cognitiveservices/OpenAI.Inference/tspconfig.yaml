@@ -36,6 +36,6 @@ options:
     packageDetails:
       name: "@azure/openai"
   "@azure-tools/typespec-python":
-    package-mode: "dataplane"
+    package-mode: "azure-dataplane"
     package-dir: "azure-openai"
     package-name: "azure-openai"
