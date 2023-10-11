@@ -39,3 +39,4 @@ options:
     package-mode: "azure-dataplane"
     package-dir: "azure-openai"
     package-name: "azure-openai"
+    # emitter-output-dir: "C:/Users/krpratic/azure-sdk-for-python/sdk/openai/azure-openai"
