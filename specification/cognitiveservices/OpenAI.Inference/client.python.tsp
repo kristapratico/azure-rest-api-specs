@@ -19,30 +19,49 @@ interface Completions{
   create is Azure.OpenAI.getCompletions
 }
 
-@@internal(Azure.OpenAI.getCompletions);
+@@access(Azure.OpenAI.getCompletions, Access.internal);
+@@access(Azure.OpenAI.Completions, Access.public);
+
 
 @operationGroup
-interface ChatCompletions{
+interface Chat{
   create is Azure.OpenAI.getChatCompletions;
   createExtensions is Azure.OpenAI.getChatCompletionsWithAzureExtensions;
 }
 
-@@internal(Azure.OpenAI.getChatCompletions);
-@@internal(Azure.OpenAI.getChatCompletionsWithAzureExtensions);
+@@access(Azure.OpenAI.getChatCompletions, Access.internal);
+@@access(Azure.OpenAI.getChatCompletionsWithAzureExtensions, Access.internal);
+@@access(Azure.OpenAI.ChatCompletions, Access.public);
+@@access(Azure.OpenAI.ChatMessage, Access.public);
+@@access(Azure.OpenAI.ChatChoice, Access.public);
+@@access(Azure.OpenAI.Choice, Access.public);
+@@access(Azure.OpenAI.ContentFilterResults, Access.public);
+@@access(Azure.OpenAI.ContentFilterResult, Access.public);
+@@access(Azure.OpenAI.PromptFilterResult, Access.public);
+@@access(Azure.OpenAI.CompletionsUsage, Access.public);
+@@access(Azure.OpenAI.FunctionDefinition, Access.public);
+@@access(Azure.OpenAI.FunctionCall, Access.public);
+@@access(Azure.OpenAI.AzureChatExtensionConfiguration, Access.public);
+@@access(Azure.OpenAI.AzureChatExtensionsMessageContext, Access.public);
 
 @operationGroup
 interface Embeddings{
   create is Azure.OpenAI.getEmbeddings
 }
 
-@@internal(Azure.OpenAI.getEmbeddings);
+@@access(Azure.OpenAI.getEmbeddings, Access.internal);
+@@access(Azure.OpenAI.Embeddings, Access.public);
+@@access(Azure.OpenAI.EmbeddingItem, Access.public);
+@@access(Azure.OpenAI.EmbeddingsUsage, Access.public);
 
 @operationGroup
 interface Images{
   generate is Azure.OpenAI.beginAzureBatchImageGeneration
 }
 
-@@internal(Azure.OpenAI.beginAzureBatchImageGeneration);
+@@access(Azure.OpenAI.beginAzureBatchImageGeneration, Access.internal);
+@@access(Azure.OpenAI.getAzureBatchImageGenerationOperationStatus, Access.internal);
+@@access(Azure.OpenAI.ImageGenerations, Access.public);
 
 @operationGroup
 interface Audio{
@@ -50,20 +69,9 @@ interface Audio{
   translations is Azure.OpenAI.getAudioTranslationAsResponseObject;
 }
 
-@@internal(Azure.OpenAI.getAudioTranscriptionAsResponseObject);
-@@internal(Azure.OpenAI.getAudioTranslationAsResponseObject);
-
-// Azure-specific long-running operations should be treated as implementation details that are wrapped into
-// appropriately merged public surface.
-@@internal(Azure.OpenAI.beginAzureBatchImageGeneration);
-@@internal(Azure.OpenAI.getAzureBatchImageGenerationOperationStatus);
-
-// Azure-specific Chat Completions with extensions should be handled by clients as a conditional selection within the
-// shared Chat Completions route, with the selection gated by the presence or non-presence of additional child
-// configuration options on the request payload options model.
-@@internal(Azure.OpenAI.getChatCompletionsWithAzureExtensions);
-
-// Some models from routes with suppressed visibility are still desired for custom public surface.
-@@include(Azure.OpenAI.ImageGenerationOptions);
-@@include(Azure.OpenAI.ImageLocation);
-@@include(Azure.OpenAI.ImageGenerations);
+@@access(Azure.OpenAI.getAudioTranscriptionAsResponseObject, Access.internal);
+@@access(Azure.OpenAI.getAudioTranslationAsResponseObject, Access.internal);
+@@access(Azure.OpenAI.AudioTranscription, Access.public);
+@@access(Azure.OpenAI.AudioTranscriptionSegment, Access.public);
+@@access(Azure.OpenAI.AudioTranslation, Access.public);
+@@access(Azure.OpenAI.AudioTranslationSegment, Access.public);
