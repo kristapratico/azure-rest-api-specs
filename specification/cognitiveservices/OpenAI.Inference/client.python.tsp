@@ -43,6 +43,9 @@ interface Chat{
 @@access(Azure.OpenAI.FunctionCall, Access.public);
 @@access(Azure.OpenAI.AzureChatExtensionConfiguration, Access.public);
 @@access(Azure.OpenAI.AzureChatExtensionsMessageContext, Access.public);
+@@access(Azure.OpenAI.AzureChatExtensionType, Access.public);
+@@access(Azure.OpenAI.ChatRole, Access.public);
+@@access(Azure.OpenAI.ContentFilterSeverity, Access.public);
 
 @operationGroup
 interface Embeddings{
@@ -62,6 +65,8 @@ interface Images{
 @@access(Azure.OpenAI.beginAzureBatchImageGeneration, Access.internal);
 @@access(Azure.OpenAI.getAzureBatchImageGenerationOperationStatus, Access.internal);
 @@access(Azure.OpenAI.ImageGenerations, Access.public);
+@@access(Azure.OpenAI.ImageGenerationResponseFormat, Access.public);
+@@access(Azure.OpenAI.ImageSize, Access.public);
 
 @operationGroup
 interface Audio{
@@ -75,3 +80,6 @@ interface Audio{
 @@access(Azure.OpenAI.AudioTranscriptionSegment, Access.public);
 @@access(Azure.OpenAI.AudioTranslation, Access.public);
 @@access(Azure.OpenAI.AudioTranslationSegment, Access.public);
+@@access(Azure.OpenAI.AudioTaskLabel, Access.public);
+@@access(Azure.OpenAI.AudioTranscriptionFormat, Access.public);
+@@access(Azure.OpenAI.AudioTranslationFormat, Access.public);
