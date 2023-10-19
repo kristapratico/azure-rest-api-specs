@@ -72,10 +72,14 @@ interface Images{
 interface Audio{
   transcriptions is Azure.OpenAI.getAudioTranscriptionAsResponseObject;
   translations is Azure.OpenAI.getAudioTranslationAsResponseObject;
+  transcriptionsText is Azure.OpenAI.getAudioTranscriptionAsPlainText;
+  translationsText is Azure.OpenAI.getAudioTranslationAsPlainText;
 }
 
 @@access(Azure.OpenAI.getAudioTranscriptionAsResponseObject, Access.internal);
 @@access(Azure.OpenAI.getAudioTranslationAsResponseObject, Access.internal);
+@@access(Azure.OpenAI.getAudioTranscriptionAsPlainText, Access.internal);
+@@access(Azure.OpenAI.getAudioTranslationAsPlainText, Access.internal);
 @@access(Azure.OpenAI.AudioTranscription, Access.public);
 @@access(Azure.OpenAI.AudioTranscriptionSegment, Access.public);
 @@access(Azure.OpenAI.AudioTranslation, Access.public);

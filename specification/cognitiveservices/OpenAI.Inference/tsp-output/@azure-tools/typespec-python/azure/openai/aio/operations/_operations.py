@@ -31,7 +31,9 @@ from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._validation import api_version_validation
 from ...operations._operations import (
     build_audio_transcriptions_request,
+    build_audio_transcriptions_text_request,
     build_audio_translations_request,
+    build_audio_translations_text_request,
     build_chat_create_extensions_request,
     build_chat_create_request,
     build_completions_create_request,
@@ -879,6 +881,232 @@ class AudioOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.AudioTranslation, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )  # pylint: disable=protected-access
+    async def _transcriptions_text(  # pylint: disable=protected-access
+        self,
+        deployment_id: str,
+        body: _models._models.AudioTranscriptionOptions,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> str:
+        ...
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _transcriptions_text(
+        self, deployment_id: str, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
+        ...
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _transcriptions_text(
+        self, deployment_id: str, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
+        ...
+
+    @distributed_trace_async
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _transcriptions_text(
+        self, deployment_id: str, body: Union[_models._models.AudioTranscriptionOptions, JSON, IO], **kwargs: Any
+    ) -> str:
+        """Gets transcribed text and associated metadata from provided spoken audio data. Audio will be
+        transcribed in the
+        written language corresponding to the language it was spoken in.
+
+        :param deployment_id: Specifies either the model deployment name (when using Azure OpenAI) or
+         model name (when using non-Azure OpenAI) to use for this request. Required.
+        :type deployment_id: str
+        :param body: Is one of the following types: AudioTranscriptionOptions, JSON, IO Required.
+        :type body: ~azure.openai.models.AudioTranscriptionOptions or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        request = build_audio_transcriptions_text_request(
+            deployment_id=deployment_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(str, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )  # pylint: disable=protected-access
+    async def _translations_text(  # pylint: disable=protected-access
+        self,
+        deployment_id: str,
+        body: _models._models.AudioTranslationOptions,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> str:
+        ...
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _translations_text(
+        self, deployment_id: str, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
+        ...
+
+    @overload
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _translations_text(
+        self, deployment_id: str, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
+        ...
+
+    @distributed_trace_async
+    @api_version_validation(
+        method_added_on="2023-09-01-preview",
+    )
+    async def _translations_text(
+        self, deployment_id: str, body: Union[_models._models.AudioTranslationOptions, JSON, IO], **kwargs: Any
+    ) -> str:
+        """Gets English language transcribed text and associated metadata from provided spoken audio data.
+
+        :param deployment_id: Specifies either the model deployment name (when using Azure OpenAI) or
+         model name (when using non-Azure OpenAI) to use for this request. Required.
+        :type deployment_id: str
+        :param body: Is one of the following types: AudioTranslationOptions, JSON, IO Required.
+        :type body: ~azure.openai.models.AudioTranslationOptions or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[str] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        request = build_audio_translations_text_request(
+            deployment_id=deployment_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(str, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
