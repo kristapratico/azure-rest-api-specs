@@ -46,6 +46,8 @@ interface Chat{
 @@access(Azure.OpenAI.AzureChatExtensionType, Access.public);
 @@access(Azure.OpenAI.ChatRole, Access.public);
 @@access(Azure.OpenAI.ContentFilterSeverity, Access.public);
+@@access(Azure.Core.Foundations.Error, Access.public);
+@@usage(Azure.Core.Foundations.Error, Usage.output);
 
 @operationGroup
 interface Embeddings{
