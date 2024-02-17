@@ -37,3 +37,8 @@ options:
     isModularLibrary: true
     packageDetails:
       name: "@azure/openai"
+  "@azure-tools/typespec-python":
+    package-mode: "azure-dataplane"
+    package-dir: "azure-openai"
+    package-name: "azure-openai"
+    emitter-output-dir: "."
