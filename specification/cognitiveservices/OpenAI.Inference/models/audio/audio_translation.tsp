@@ -42,12 +42,6 @@ model AudioTranslationOptions {
   filename?: string;
 
   @doc("""
-  The requested format of the translation response data, which will influence the content and detail of the result.
-  """)
-  @encodedName("application/json", "response_format")
-  responseFormat?: AudioTranslationFormat;
-
-  @doc("""
   An optional hint to guide the model's style or continue from a prior audio segment. The written language of the
   prompt should match the primary spoken language of the audio data.
   """)
@@ -80,33 +74,11 @@ model AudioTranslationSegment {
   @doc("The 0-based index of this segment within a translation.")
   id: int32;
 
-  @doc("The time at which this segment started relative to the beginning of the translated audio.")
-  @encode("seconds", float32)
-  start: duration;
-
-  @doc("The time at which this segment ended relative to the beginning of the translated audio.")
-  @encode("seconds", float32)
-  end: duration;
-
   @doc("The translated text that was part of this audio segment.")
   text: string;
 
   @doc("The temperature score associated with this audio segment.")
   temperature: float32;
-
-  @doc("The average log probability associated with this audio segment.")
-  @encodedName("application/json", "avg_logprob")
-  @projectedName("csharp", "AverageLogProbability")
-  avgLogprob: float32;
-
-  @doc("The compression ratio of this audio segment.")
-  @encodedName("application/json", "compression_ratio")
-  compressionRatio: float32;
-
-  @doc("The probability of no speech detection within this audio segment.")
-  @encodedName("application/json", "no_speech_prob")
-  @projectedName("csharp", "NoSpeechProbability")
-  noSpeechProb: float32;
 
   @doc("The token IDs matching the translated text in this audio segment.")
   tokens: int32[];
@@ -136,10 +108,6 @@ model AudioTranslation {
   This is expressed as a two-letter ISO-639-1 language code like 'en' or 'fr'.
   """)
   language?: string;
-
-  @doc("The total duration of the audio processed to produce accompanying translation information.")
-  @encode("seconds", float32)
-  duration?: duration;
 
   @doc("""
   A collection of information about the timing, probabilities, and other detail of each processed audio segment.
