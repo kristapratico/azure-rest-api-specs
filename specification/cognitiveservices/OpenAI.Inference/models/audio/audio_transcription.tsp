@@ -35,13 +35,6 @@ The configuration information for an audio transcription request.
 @added(ServiceApiVersions.v2023_09_01_Preview)
 model AudioTranscriptionOptions {
   @doc("""
-  The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
-   flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
-  """)
-  @projectedName("csharp", "AudioData")
-  file: bytes;
-
-  @doc("""
   The optional filename or descriptive identifier to associate with with the audio data.
   """)
   // Note: although this isn't explicitly part of the request schema per documentation, it is present via the encoded
