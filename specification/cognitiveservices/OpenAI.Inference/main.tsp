@@ -2,8 +2,6 @@ import "@typespec/http";
 import "@typespec/versioning";
 
 import "./routes/common.tsp";
-import "./routes/audio_transcription.tsp";
-import "./routes/audio_translation.tsp";
 import "./routes/completions.tsp";
 import "./routes/images.tsp";
 import "./routes/embeddings.tsp";

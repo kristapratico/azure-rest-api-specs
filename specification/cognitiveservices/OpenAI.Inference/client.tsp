@@ -17,22 +17,6 @@ namespace Client;
   service: Azure.OpenAI,
 })
 interface OpenAIClient {
-  #suppress "@azure-tools/typespec-azure-core/byos" "representation of existing multipart/form-data operation"
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "non-model response value needed"
-  getAudioTranscriptionAsPlainText is Azure.OpenAI.getAudioTranscriptionAsPlainText;
-
-  #suppress "@azure-tools/typespec-azure-core/byos" "representation of existing multipart/form-data operation"
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "non-model response value needed"
-  getAudioTranscriptionAsResponseObject is Azure.OpenAI.getAudioTranscriptionAsResponseObject;
-
-  #suppress "@azure-tools/typespec-azure-core/byos" "representation of existing multipart/form-data operation"
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "non-model response value needed"
-  getAudioTranslationAsPlainText is Azure.OpenAI.getAudioTranslationAsPlainText;
-
-  #suppress "@azure-tools/typespec-azure-core/byos" "representation of existing multipart/form-data operation"
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "non-model response value needed"
-  getAudioTranslationAsResponseObject is Azure.OpenAI.getAudioTranslationAsResponseObject;
-
   getCompletions is Azure.OpenAI.getCompletions;
   getChatCompletions is Azure.OpenAI.getChatCompletions;
   getChatCompletionsWithAzureExtensions is Azure.OpenAI.getChatCompletionsWithAzureExtensions;
